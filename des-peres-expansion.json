@@ -1,0 +1,17 @@
+{
+  "center": {
+    "label": "Des Peres City Hall (approximate)",
+    "address": "12325 Manchester Rd, Des Peres, MO 63131",
+    "lat": 38.6007,
+    "lng": -90.448,
+    "coordinateQuality": "manually estimated"
+  },
+  "scopeRadiusMiles": 7,
+  "totalEntries": 70,
+  "estimatedInside": 51,
+  "officialInside": 32,
+  "guideInside": 19,
+  "newEntries": 20,
+  "sourceDate": "2026-10-02",
+  "distinctSourceUrls": 92
+}

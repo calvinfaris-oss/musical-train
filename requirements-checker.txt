@@ -1,0 +1,2 @@
+# This file is used by GitHub Actions, not by Vercel's static app build.
+pypdf==5.9.0

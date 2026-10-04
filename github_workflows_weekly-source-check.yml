@@ -1,0 +1,54 @@
+name: Weekly happy-hour source check
+
+on:
+  schedule:
+    # Fridays at 12:23 UTC: 7:23 AM CDT / 6:23 AM CST.
+    # Fixed UTC avoids relying on newer timezone-scheduling support.
+    - cron: '23 12 * * 5'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-happy-hour-source-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Read the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prepare Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PDF text support
+        run: python -m pip install -r requirements-checker.txt
+      - name: Test checker safety and comparison logic
+        run: python -m unittest discover -s tests -v
+      - name: Check linked sources without changing listings
+        env:
+          SITE_OWNER_CONTACT: ${{ vars.SITE_OWNER_CONTACT }}
+        run: python scripts/check_sources.py --max-minutes 18
+      - name: Save the full review report and snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: happy-hour-source-check-${{ github.run_id }}
+          path: reports/
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Update the review issue
+        if: success() && vars.CREATE_SOURCE_CHECK_ISSUE != 'false'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_check_issue.py
