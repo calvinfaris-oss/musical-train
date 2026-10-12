@@ -129,6 +129,8 @@ h2.section-title{font:400 clamp(26px,4.5vw,34px)/1.2 var(--serif);letter-spacing
   color:var(--ink2);background:var(--bg-soft);border:1px solid var(--line);
   padding:8px 12px;border-radius:999px;
 }
+.meta a.meta-link{text-decoration:none;color:inherit}
+.meta a.meta-link:hover span{border-color:var(--green);color:var(--green-deep)}
 
 /* Empty state for projects page */
 .empty{
