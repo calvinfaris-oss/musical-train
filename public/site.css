@@ -131,16 +131,17 @@ h2.section-title{font:400 clamp(26px,4.5vw,34px)/1.2 var(--serif);letter-spacing
 }
 .meta a.meta-link{text-decoration:none;color:inherit}
 .meta a.meta-link:hover span{border-color:var(--green);color:var(--green-deep)}
-.dupr-card{
+.profile-card{
   display:flex;justify-content:space-between;align-items:center;gap:16px;
   padding:18px 22px;margin:20px 0 4px;
   border:1px solid var(--line);border-radius:var(--radius);
   background:var(--card);text-decoration:none;color:inherit;
   transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
 }
-.dupr-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:var(--shadow)}
-.dupr-label{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
-.dupr-cta{font-weight:600;color:var(--green-deep);white-space:nowrap}
+.profile-card + .profile-card{margin-top:12px}
+.profile-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:var(--shadow)}
+.profile-label{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.profile-cta{font-weight:600;color:var(--green-deep);white-space:nowrap}
 
 /* Empty state for projects page */
 .empty{
